@@ -319,19 +319,20 @@ class _mainpgState extends State<mainpg> {
             );
           } else {
             return Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Spacer(),
                 project1(
-                  width: (((MediaQuery.sizeOf(context).width) - 256) / 3),
+                  width: (((MediaQuery.sizeOf(context).width) - 200) / 3),
                 ),
                 SizedBox(width: 50),
                 project2(
-                  width: (((MediaQuery.sizeOf(context).width) - 256) / 3),
+                  width: (((MediaQuery.sizeOf(context).width) - 200) / 3),
                 ),
                 SizedBox(width: 50),
                 project3(
-                  width: (((MediaQuery.sizeOf(context).width) - 256) / 3),
+                  width: (((MediaQuery.sizeOf(context).width) - 200) / 3),
                 ),
                 Spacer()
               ],

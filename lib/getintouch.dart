@@ -194,9 +194,16 @@ class _getintouch extends State<getintouch> {
                                 'https://www.instagram.com/nlack._bigger');
                             await launchUrl(URi);
                           },
-                          child: Text(
-                            'Instagram',
-                            style: TextStyle(color: Colors.white, fontSize: 16),
+                          // child: Text(
+                          //   'Instagram',
+                          //   style: TextStyle(color: Colors.white, fontSize: 16),
+                          // )),
+                          child: HoverAnimatedText(
+                            text: 'Instagram',
+                            initialStyle:
+                                TextStyle(color: Colors.white, fontSize: 16),
+                            hoveredStyle:
+                                TextStyle(color: Colors.yellow, fontSize: 18),
                           )),
                       SizedBox(height: 10),
                       GestureDetector(
@@ -495,16 +502,38 @@ class _getintouch extends State<getintouch> {
                                         color: Colors.white, fontSize: 18),
                                   )),
                               SizedBox(width: 10),
+                              // GestureDetector(
+                              //     onTap: () async {
+                              //       final Uri URi = Uri.parse(
+                              //           'https://www.instagram.com/nlack._bigger');
+                              //       await launchUrl(URi);
+                              //     },
+                              //     child: Text(
+                              //       'Instagram',
+                              //       style: TextStyle(
+                              //           color: Colors.white, fontSize: 18),
+                              //     )),
                               GestureDetector(
                                   onTap: () async {
                                     final Uri URi = Uri.parse(
                                         'https://www.instagram.com/nlack._bigger');
                                     await launchUrl(URi);
                                   },
-                                  child: Text(
-                                    'Instagram',
-                                    style: TextStyle(
-                                        color: Colors.white, fontSize: 18),
+                                  // child: Text(
+                                  //   'Instagram',
+                                  //   style: TextStyle(color: Colors.white, fontSize: 16),
+                                  // )),
+                                  child: HoverAnimatedText(
+                                    text: 'Instagram',
+                                    initialStyle: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 18,
+                                        fontFamily: "Roboto_Mono"),
+                                    hoveredStyle: TextStyle(
+                                        color: const Color(0XFFAE366),
+                                        fontSize: 45,
+                                        fontWeight: FontWeight.w700,
+                                        fontFamily: "Roboto_Mono"),
                                   )),
                               SizedBox(width: 10),
                               GestureDetector(
@@ -699,6 +728,47 @@ class _getintouch extends State<getintouch> {
               ),
             ));
       }
+    });
+  }
+}
+
+class HoverAnimatedText extends StatefulWidget {
+  const HoverAnimatedText({
+    super.key,
+    required this.text,
+    required this.initialStyle,
+    required this.hoveredStyle,
+  });
+
+  final String text;
+  final TextStyle initialStyle;
+  final TextStyle hoveredStyle;
+
+  @override
+  State<HoverAnimatedText> createState() => _HoverAnimatedTextState();
+}
+
+class _HoverAnimatedTextState extends State<HoverAnimatedText> {
+  bool _isHovering = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
+      onEnter: (_) => _onHoverChanged(true),
+      onExit: (_) => _onHoverChanged(false),
+      child: AnimatedDefaultTextStyle(
+        style: _isHovering ? widget.hoveredStyle : widget.initialStyle,
+        duration: const Duration(milliseconds: 250),
+        curve: Curves.easeInOut,
+        child: Text(widget.text),
+      ),
+    );
+  }
+
+  void _onHoverChanged(bool isHovering) {
+    setState(() {
+      _isHovering = isHovering;
     });
   }
 }
