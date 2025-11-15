@@ -3,11 +3,20 @@ import 'package:rainbow_edge_lighting/rainbow_edge_lighting.dart';
 import 'package:codequantum/getintouch.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:typewritertext/typewritertext.dart';
 
 bool isHovering = false;
 bool isHoveringOverProject1 = false,
     isHoveringOverProject2 = false,
     isHoveringOverProject3 = false;
+final valueController = TypeWriterController.fromValue(
+  TypeWriterValue([
+    ' Developer',
+    ' Designer',
+  ]),
+  repeat: true,
+  duration: const Duration(milliseconds: 500),
+);
 void main() {
   runApp(const MainApp());
 }
@@ -128,24 +137,43 @@ class _mainpgState extends State<mainpg> {
               children: [
                 Spacer(),
                 Text(
-                  'Freelance Developer',
+                  'Freelance',
                   style: TextStyle(color: Colors.white, fontSize: 22),
                 ),
+                TypeWriter(
+                    controller:
+                        valueController, // valueController // streamController
+                    builder: (context, value) {
+                      return Text(
+                        value.text,
+                        maxLines: 2,
+                      );
+                    }),
                 Spacer(),
               ],
             );
-          } else {
-            return Row(
-              children: [
-                Spacer(),
-                Text(
-                  'Freelance Developer',
-                  style: TextStyle(color: Colors.white, fontSize: 45),
-                ),
-                Spacer(),
-              ],
-            );
-          }
+          } else {}
+          return Row(
+            children: [
+              Spacer(),
+              Text(
+                'Freelance',
+                style: TextStyle(color: Colors.white, fontSize: 22),
+              ),
+              TypeWriter(
+                controller:
+                    valueController, // valueController // streamController
+                builder: (context, value) {
+                  return Text(
+                    value.text,
+                    style: TextStyle(color: Colors.white, fontSize: 32),
+                    maxLines: 2,
+                  );
+                },
+              ),
+              Spacer(),
+            ],
+          );
         }),
         SizedBox(height: 30),
         LayoutBuilder(builder: (context, constraints) {
