@@ -4,6 +4,7 @@ import 'package:codequantum/getintouch.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:typewritertext/typewritertext.dart';
+import 'package:flutter_flip_card/flutter_flip_card.dart';
 
 bool isHovering = false;
 bool isHoveringOverProject1 = false,
@@ -11,12 +12,14 @@ bool isHoveringOverProject1 = false,
     isHoveringOverProject3 = false;
 final valueController = TypeWriterController.fromValue(
   TypeWriterValue([
-    ' Developer',
-    ' Designer',
+    ' Developer...',
+    ' Designer...',
   ]),
   repeat: true,
   duration: const Duration(milliseconds: 500),
 );
+
+final flipcontroller = FlipCardController();
 void main() {
   runApp(const MainApp());
 }
@@ -41,7 +44,7 @@ class _MainAppState extends State<MainApp> {
       home: Scaffold(
           appBar: AppBar(
             surfaceTintColor: Colors.transparent,
-            backgroundColor: const Color.fromARGB(255, 10, 10, 10),
+            backgroundColor: Color(0xFF122536),
             title: Column(
               // crossAxisAlignment:,
               children: [
@@ -52,6 +55,8 @@ class _MainAppState extends State<MainApp> {
                     if (constraints.maxWidth < 1345) {
                       return Row(
                         children: [
+                          Image.asset('assets/CodeQuLog.png',
+                              height: 50, width: 50),
                           SizedBox(width: 5),
                           Text(
                             'CODEQUANTUM.IN',
@@ -76,14 +81,15 @@ class _MainAppState extends State<MainApp> {
                     } else {
                       return Row(
                         children: [
+                          Image.asset('assets/CodeQuLog.png', height: 35),
                           SizedBox(width: 30),
-                          Text(
-                            'CODEQUANTUM.IN',
-                            style: TextStyle(
-                                color: const Color.fromARGB(255, 42, 157, 244),
-                                fontSize: 22,
-                                fontWeight: FontWeight.w500),
-                          ),
+                          // Text(
+                          //   'CODEQUANTUM.IN',
+                          //   style: TextStyle(
+                          //       color: const Color.fromARGB(255, 42, 157, 244),
+                          //       fontSize: 22,
+                          //       fontWeight: FontWeight.w500),
+                          // ),
                           Spacer(),
                           GestureDetector(
                               onTap: () async {
@@ -146,6 +152,7 @@ class _mainpgState extends State<mainpg> {
                     builder: (context, value) {
                       return Text(
                         value.text,
+                        style: TextStyle(fontSize: 22),
                         maxLines: 2,
                       );
                     }),
@@ -156,21 +163,34 @@ class _mainpgState extends State<mainpg> {
           return Row(
             children: [
               Spacer(),
-              Text(
-                'Freelance',
-                style: TextStyle(color: Colors.white, fontSize: 22),
-              ),
-              TypeWriter(
-                controller:
-                    valueController, // valueController // streamController
-                builder: (context, value) {
-                  return Text(
-                    value.text,
-                    style: TextStyle(color: Colors.white, fontSize: 32),
-                    maxLines: 2,
-                  );
-                },
-              ),
+              // Text(
+              //   'Freelance',
+              //   style: TextStyle(color: Colors.white, fontSize: 22),
+              // ),
+              // TypeWriter(
+              //   controller:
+              //       valueController, // valueController // streamController
+              //   builder: (context, value) {
+              //     return Text(
+              //       value.text,
+              //       style: TextStyle(color: Colors.white, fontSize: 22),
+              //       maxLines: 2,
+              //     );
+              //   },
+              // ),
+              // FlipCard(
+              //   rotateSide: RotateSide.bottom,
+              //   axis: FlipAxis.horizontal,
+              //   controller: flipcontroller,
+              //   frontWidget: Text(
+              //     'Developer',
+              //     style: TextStyle(color: Colors.white, fontSize: 22),
+              //   ),
+              //   backWidget: Text(
+              //     'Designer',
+              //     style: TextStyle(color: Colors.white, fontSize: 22),
+              //   ),
+              // ),
               Spacer(),
             ],
           );
@@ -210,28 +230,49 @@ class _mainpgState extends State<mainpg> {
             return Row(
               children: [
                 Spacer(),
+
                 RichText(
-                    textAlign: TextAlign.justify,
+                    textAlign: TextAlign.center,
                     text: TextSpan(children: <TextSpan>[
                       TextSpan(
-                        text: "I'm ",
+                        text: "Building Tomorrow's Technology, Today.",
                         style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontFamily: "Roboto_Mono",
                             color: Color.fromARGB(130, 224, 224, 224),
-                            fontSize: 17),
+                            fontSize: 24),
                       ),
                       TextSpan(
-                        text: "Kartik NHM",
+                        text:
+                            "\nWe are driven by the power of code and defined by our commitment to groundbreaking and innovative solutions.",
                         style: TextStyle(
                             color: const Color.fromARGB(255, 42, 157, 244),
-                            fontSize: 17),
+                            fontFamily: "Roboto_Mono",
+                            fontSize: 18),
                       ),
-                      TextSpan(
-                        text: " passionate about developing Applications.",
-                        style: TextStyle(
-                            color: Color.fromARGB(130, 224, 224, 224),
-                            fontSize: 17),
-                      )
                     ])),
+                // RichText(
+                //     textAlign: TextAlign.justify,
+                //     text: TextSpan(children: <TextSpan>[
+                //       TextSpan(
+                //         text: "I'm ",
+                //         style: TextStyle(
+                //             color: Color.fromARGB(130, 224, 224, 224),
+                //             fontSize: 17),
+                //       ),
+                //       TextSpan(
+                //         text: "Kartik NHM",
+                //         style: TextStyle(
+                //             color: const Color.fromARGB(255, 42, 157, 244),
+                //             fontSize: 17),
+                //       ),
+                //       TextSpan(
+                //         text: " passionate about developing Applications.",
+                //         style: TextStyle(
+                //             color: Color.fromARGB(130, 224, 224, 224),
+                //             fontSize: 17),
+                //       )
+                //     ])),
                 Spacer(),
               ],
             );
@@ -368,16 +409,41 @@ class _mainpgState extends State<mainpg> {
           }
         }),
         SizedBox(height: 100),
-        const Divider(
-          height: 10,
-          color: Color.fromARGB(60, 224, 224, 224),
-        ),
-        Text(
-          '© 2025 Kartik NHM. All rights reserved.',
-          style: TextStyle(
-              color: Color.fromARGB(130, 224, 224, 224), fontSize: 17),
-        ),
-        SizedBox(height: 100),
+        Container(
+            color: Color(0xFF122536),
+            child: Padding(
+                padding: EdgeInsetsGeometry.all(15),
+                child: Column(children: [
+                  // const Divider(height: 10, color: Color.fromARGB(60, 224, 224, 224)),
+                  Text(
+                    'CODEQUANTUM (OPC) PRIVATE LIMITED',
+                    style: TextStyle(
+                        color: Color.fromARGB(130, 224, 224, 224),
+                        fontSize: 19,
+                        fontWeight: FontWeight.bold),
+                    textAlign: TextAlign.center,
+                  ),
+                  Text(
+                    'CIN: U62011KA2025OPC210724\n Regd. Office : C/o, N.H. M Gurubasavarajaiah, Hubli Udyamnagar, Hubli, Dharwad- 580030, Karnataka, India\n Admin Office : Plot No.9 "Nammamane" 9th Cross, Shreyanagar,  Udyamnagar, Gokul Road, Hubballi - 580030 KA \nCall : +91 94495 67617  | codequantumpvtltd@gmail.com  |  https://codequantum.in\n',
+                    style: TextStyle(
+                        color: Color.fromARGB(130, 224, 224, 224),
+                        fontSize: 17),
+                    textAlign: TextAlign.center,
+                  ),
+                  // SizedBox(height: 30),
+                  const Divider(
+                    height: 10,
+                    color: Color.fromARGB(51, 42, 157, 244),
+                  ),
+                  // color: Color.fromARGB(31, 42, 157, 244)),
+                  Text(
+                    '\n© 2025 CodeQuantum. All rights reserved.',
+                    style: TextStyle(
+                        color: Color.fromARGB(130, 224, 224, 224),
+                        fontSize: 17),
+                  ),
+                  // SizedBox(height: 100),
+                ])))
       ],
     ));
   }
