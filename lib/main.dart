@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:ui';
 import 'package:rainbow_edge_lighting/rainbow_edge_lighting.dart';
 import 'package:codequantum/getintouch.dart';
@@ -9,11 +10,18 @@ import 'package:flutter_flip_card/flutter_flip_card.dart';
 bool isHovering = false;
 bool isHoveringOverProject1 = false,
     isHoveringOverProject2 = false,
-    isHoveringOverProject3 = false;
-final valueController = TypeWriterController.fromValue(
+    isHoveringOverProject3 = false,
+    isFrontTyping = false;
+final frontvalueController = TypeWriterController.fromValue(
   TypeWriterValue([
-    ' Developer...',
-    ' Designer...',
+    '@ CodeQuantum...',
+  ]),
+  repeat: true,
+  duration: const Duration(milliseconds: 500),
+);
+final backvalueController = TypeWriterController.fromValue(
+  TypeWriterValue([
+    '@ Here...',
   ]),
   repeat: true,
   duration: const Duration(milliseconds: 500),
@@ -146,16 +154,16 @@ class _mainpgState extends State<mainpg> {
                   'Freelance',
                   style: TextStyle(color: Colors.white, fontSize: 22),
                 ),
-                TypeWriter(
-                    controller:
-                        valueController, // valueController // streamController
-                    builder: (context, value) {
-                      return Text(
-                        value.text,
-                        style: TextStyle(fontSize: 22),
-                        maxLines: 2,
-                      );
-                    }),
+                // TypeWriter(
+                //     controller:
+                //         valueController, // valueController // streamController
+                //     builder: (context, value) {
+                //       return Text(
+                //         value.text,
+                //         style: TextStyle(fontSize: 22),
+                //         maxLines: 2,
+                //       );
+                //     }),
                 Spacer(),
               ],
             );
@@ -235,21 +243,21 @@ class _mainpgState extends State<mainpg> {
                     textAlign: TextAlign.center,
                     text: TextSpan(children: <TextSpan>[
                       TextSpan(
-                        text: "Building Tomorrow's Technology, Today.",
+                        text: "Building Tomorrow's Technology, Today.\n",
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontFamily: "Roboto_Mono",
                             color: Color.fromARGB(130, 224, 224, 224),
                             fontSize: 24),
                       ),
-                      TextSpan(
-                        text:
-                            "\nWe are driven by the power of code and defined by our commitment to groundbreaking and innovative solutions.",
-                        style: TextStyle(
-                            color: const Color.fromARGB(255, 42, 157, 244),
-                            fontFamily: "Roboto_Mono",
-                            fontSize: 18),
-                      ),
+                      // TextSpan(
+                      //   text:
+                      //       "\nWe are driven by the power of code and defined by our commitment to groundbreaking and innovative solutions.",
+                      //   style: TextStyle(
+                      //       color: const Color.fromARGB(255, 42, 157, 244),
+                      //       fontFamily: "Roboto_Mono",
+                      //       fontSize: 20),
+                      // ),
                     ])),
                 // RichText(
                 //     textAlign: TextAlign.justify,
@@ -278,7 +286,14 @@ class _mainpgState extends State<mainpg> {
             );
           }
         }),
-        SizedBox(height: 30),
+        // SizedBox(height: 10),
+        Row(children: [
+          Spacer(),
+          SizedBox(width: 50),
+          codequantumflip(),
+          Spacer()
+        ]),
+        SizedBox(height: 70),
         Row(
           children: [
             Spacer(),
@@ -356,7 +371,7 @@ class _mainpgState extends State<mainpg> {
             Spacer()
           ],
         ),
-        SizedBox(height: 100),
+        SizedBox(height: 70),
         Row(
           children: [
             Spacer(),
@@ -446,6 +461,104 @@ class _mainpgState extends State<mainpg> {
                 ])))
       ],
     ));
+  }
+}
+
+class codequantumflip extends StatefulWidget {
+  const codequantumflip({
+    super.key,
+  });
+
+  @override
+  State<codequantumflip> createState() => _codequantumflipState();
+}
+
+class _codequantumflipState extends State<codequantumflip> {
+  void setTyping() {
+    setState(() {
+      isFrontTyping = !isFrontTyping;
+    });
+  }
+
+  Timer? _timer;
+  @override
+  void initState() {
+    super.initState();
+    _timer = Timer.periodic(Duration(seconds: 7), (Timer t) {
+      flipcontroller.flipcard();
+      setTyping();
+    });
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return FlipCard(
+      rotateSide: RotateSide.bottom,
+      axis: FlipAxis.horizontal,
+      controller: flipcontroller,
+      /*  frontWidget: RichText(
+          textAlign: TextAlign.justify,
+          text: TextSpan(children: <TextSpan>[
+            TextSpan(
+              text: "@ ",
+              style: TextStyle(
+                  color: Color.fromARGB(255, 42, 157, 244), fontSize: 32),
+            ),
+            TextSpan(
+              text: "CodeQuantum...",
+              style: TextStyle(
+                  color: const Color.fromARGB(130, 224, 224, 224),
+                  fontSize: 32),
+            ),
+          ])),
+          */
+      frontWidget: TypeWriter(
+        enabled: isFrontTyping,
+        controller: frontvalueController, // valueController // streamController
+        builder: (context, value) {
+          return Text(
+            value.text,
+            style: TextStyle(
+                color: Color.fromARGB(255, 42, 157, 244), fontSize: 32),
+            maxLines: 2,
+          );
+        },
+      ),
+
+      // backWidget: RichText(
+      //     textAlign: TextAlign.justify,
+      //     text: TextSpan(children: <TextSpan>[
+      //       TextSpan(
+      //         text: "@ ",
+      //         style: TextStyle(
+      //             color: Color.fromARGB(255, 42, 157, 244), fontSize: 32),
+      //       ),
+      //       TextSpan(
+      //         text: "Here...",
+      //         style: TextStyle(
+      //             color: const Color.fromARGB(130, 224, 224, 224),
+      //             fontSize: 32),
+      //       ),
+      //     ])),
+      backWidget: TypeWriter(
+        enabled: !isFrontTyping,
+        controller: backvalueController, // valueController // streamController
+        builder: (context, value) {
+          return Text(
+            value.text,
+            style: TextStyle(
+                color: Color.fromARGB(255, 42, 157, 244), fontSize: 32),
+            maxLines: 2,
+          );
+        },
+      ),
+    );
   }
 }
 
