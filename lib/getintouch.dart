@@ -90,7 +90,7 @@ class _getintouch extends State<getintouch> {
             automaticallyImplyLeading: false,
             //iconTheme: IconThemeData(color: Colors.white),
             surfaceTintColor: Colors.transparent,
-            backgroundColor: const Color.fromARGB(255, 10, 10, 10),
+            backgroundColor: Color(0xFF122536),
             title: Column(
               children: [
                 SizedBox(height: 25),
@@ -100,13 +100,8 @@ class _getintouch extends State<getintouch> {
                     children: [
                       SizedBox(width: 5),
                       GestureDetector(
-                        child: Text(
-                          'CODEQUANTUM.IN',
-                          style: TextStyle(
-                              color: const Color.fromARGB(255, 42, 157, 244),
-                              fontSize: 18,
-                              fontWeight: FontWeight.w500),
-                        ),
+                        child: Image.asset('assets/CodeQuLog.png',
+                            height: 50, width: 200),
                         onTap: () {
                           Navigator.pop(context);
                         },
@@ -419,17 +414,41 @@ class _getintouch extends State<getintouch> {
                       ],
                     ),
                     SizedBox(height: 100),
-                    const Divider(
-                      height: 10,
-                      color: Color.fromARGB(60, 224, 224, 224),
-                    ),
-                    Text(
-                      '© 2025 Kartik Nhm. All rights reserved.',
-                      style: TextStyle(
-                          color: Color.fromARGB(130, 224, 224, 224),
-                          fontSize: 17),
-                    ),
-                    SizedBox(height: 50),
+                    Container(
+                        color: Color(0xFF122536),
+                        child: Padding(
+                            padding: EdgeInsetsGeometry.all(15),
+                            child: Column(children: [
+                              // const Divider(height: 10, color: Color.fromARGB(60, 224, 224, 224)),
+                              Text(
+                                'CODEQUANTUM (OPC) PRIVATE LIMITED',
+                                style: TextStyle(
+                                    color: Color.fromARGB(130, 224, 224, 224),
+                                    fontSize: 19,
+                                    fontWeight: FontWeight.bold),
+                                textAlign: TextAlign.center,
+                              ),
+                              Text(
+                                'CIN: U62011KA2025OPC210724\n Regd. Office : C/o, N.H. M Gurubasavarajaiah, Hubli Udyamnagar, Hubli, Dharwad- 580030, Karnataka, India\n Admin Office : Plot No.9 "Nammamane" 9th Cross, Shreyanagar,  Udyamnagar, Gokul Road, Hubballi - 580030 KA \nCall : +91 94495 67617  | \n codequantumpvtltd@gmail.com  | \n https://codequantum.in\n',
+                                style: TextStyle(
+                                    color: Color.fromARGB(130, 224, 224, 224),
+                                    fontSize: 17),
+                                textAlign: TextAlign.center,
+                              ),
+                              // SizedBox(height: 30),
+                              const Divider(
+                                height: 10,
+                                color: Color.fromARGB(51, 42, 157, 244),
+                              ),
+                              // color: Color.fromARGB(31, 42, 157, 244)),
+                              Text(
+                                '\n© 2025 CodeQuantum. All rights reserved.',
+                                style: TextStyle(
+                                    color: Color.fromARGB(130, 224, 224, 224),
+                                    fontSize: 17),
+                              ),
+                              // SizedBox(height: 100),
+                            ])))
                   ],
                 ),
               ),
@@ -444,7 +463,8 @@ class _getintouch extends State<getintouch> {
               automaticallyImplyLeading: false,
               //iconTheme: IconThemeData(color: Colors.white),
               surfaceTintColor: Colors.transparent,
-              backgroundColor: const Color.fromARGB(255, 10, 10, 10),
+
+              backgroundColor: Color(0xFF122536),
               title: Column(
                 children: [
                   SizedBox(height: 25),
@@ -454,13 +474,8 @@ class _getintouch extends State<getintouch> {
                       children: [
                         SizedBox(width: 30),
                         GestureDetector(
-                          child: Text(
-                            'CODEQUANTUM.IN',
-                            style: TextStyle(
-                                color: const Color.fromARGB(255, 42, 157, 244),
-                                fontSize: 22,
-                                fontWeight: FontWeight.w500),
-                          ),
+                          child:
+                              Image.asset('assets/CodeQuLog.png', height: 35),
                           onTap: () {
                             Navigator.pop(context);
                           },
@@ -802,17 +817,41 @@ class _getintouch extends State<getintouch> {
                     ],
                   ),
                   SizedBox(height: 100),
-                  const Divider(
-                    height: 10,
-                    color: Color.fromARGB(60, 224, 224, 224),
-                  ),
-                  Text(
-                    '© 2025 Kartik NHM. All rights reserved.',
-                    style: TextStyle(
-                        color: Color.fromARGB(130, 224, 224, 224),
-                        fontSize: 17),
-                  ),
-                  SizedBox(height: 50),
+                  Container(
+                      color: Color(0xFF122536),
+                      child: Padding(
+                          padding: EdgeInsetsGeometry.all(15),
+                          child: Column(children: [
+                            // const Divider(height: 10, color: Color.fromARGB(60, 224, 224, 224)),
+                            Text(
+                              'CODEQUANTUM (OPC) PRIVATE LIMITED',
+                              style: TextStyle(
+                                  color: Color.fromARGB(130, 224, 224, 224),
+                                  fontSize: 19,
+                                  fontWeight: FontWeight.bold),
+                              textAlign: TextAlign.center,
+                            ),
+                            Text(
+                              'CIN: U62011KA2025OPC210724\n Regd. Office : C/o, N.H. M Gurubasavarajaiah, Hubli Udyamnagar, Hubli, Dharwad- 580030, Karnataka, India\n Admin Office : Plot No.9 "Nammamane" 9th Cross, Shreyanagar,  Udyamnagar, Gokul Road, Hubballi - 580030 KA \nCall : +91 94495 67617  | codequantumpvtltd@gmail.com  |  https://codequantum.in\n',
+                              style: TextStyle(
+                                  color: Color.fromARGB(130, 224, 224, 224),
+                                  fontSize: 17),
+                              textAlign: TextAlign.center,
+                            ),
+                            // SizedBox(height: 30),
+                            const Divider(
+                              height: 10,
+                              color: Color.fromARGB(51, 42, 157, 244),
+                            ),
+                            // color: Color.fromARGB(31, 42, 157, 244)),
+                            Text(
+                              '\n© 2025 CodeQuantum. All rights reserved.',
+                              style: TextStyle(
+                                  color: Color.fromARGB(130, 224, 224, 224),
+                                  fontSize: 17),
+                            ),
+                            // SizedBox(height: 100),
+                          ])))
                 ],
               ),
             ));

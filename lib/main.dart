@@ -4,30 +4,13 @@ import 'package:rainbow_edge_lighting/rainbow_edge_lighting.dart';
 import 'package:codequantum/getintouch.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:typewritertext/typewritertext.dart';
-import 'package:flutter_flip_card/flutter_flip_card.dart';
+import 'package:animated_text_kit/animated_text_kit.dart';
 
 bool isHovering = false;
 bool isHoveringOverProject1 = false,
     isHoveringOverProject2 = false,
-    isHoveringOverProject3 = false,
-    isFrontTyping = false;
-final frontvalueController = TypeWriterController.fromValue(
-  TypeWriterValue([
-    '@ CodeQuantum...',
-  ]),
-  repeat: true,
-  duration: const Duration(milliseconds: 500),
-);
-final backvalueController = TypeWriterController.fromValue(
-  TypeWriterValue([
-    '@ Here...',
-  ]),
-  repeat: true,
-  duration: const Duration(milliseconds: 500),
-);
+    isHoveringOverProject3 = false;
 
-final flipcontroller = FlipCardController();
 void main() {
   runApp(const MainApp());
 }
@@ -64,15 +47,8 @@ class _MainAppState extends State<MainApp> {
                       return Row(
                         children: [
                           Image.asset('assets/CodeQuLog.png',
-                              height: 50, width: 50),
+                              height: 50, width: 200),
                           SizedBox(width: 5),
-                          Text(
-                            'CODEQUANTUM.IN',
-                            style: TextStyle(
-                                color: const Color.fromARGB(255, 42, 157, 244),
-                                fontSize: 18,
-                                fontWeight: FontWeight.w500),
-                          ),
                           Spacer(),
                           GestureDetector(
                               onTap: () async {
@@ -147,153 +123,74 @@ class _mainpgState extends State<mainpg> {
         SizedBox(height: 50),
         LayoutBuilder(builder: (context, constraints) {
           if (constraints.maxWidth < 1345) {
-            return Row(
+            return Column(
               children: [
-                Spacer(),
-                Text(
-                  'Freelance',
-                  style: TextStyle(color: Colors.white, fontSize: 22),
+                Row(
+                  children: [
+                    Spacer(),
+                    RichText(
+                        textAlign: TextAlign.center,
+                        text: TextSpan(children: <TextSpan>[
+                          TextSpan(
+                            text: "Building Tomorrow's \nTechnology,\nToday.\n",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontFamily: "Roboto_Mono",
+                                color: Color.fromARGB(130, 224, 224, 224),
+                                fontSize: 24),
+                          )
+                        ])),
+                    Spacer(),
+                  ],
                 ),
-                // TypeWriter(
-                //     controller:
-                //         valueController, // valueController // streamController
-                //     builder: (context, value) {
-                //       return Text(
-                //         value.text,
-                //         style: TextStyle(fontSize: 22),
-                //         maxLines: 2,
-                //       );
-                //     }),
-                Spacer(),
-              ],
-            );
-          } else {}
-          return Row(
-            children: [
-              Spacer(),
-              // Text(
-              //   'Freelance',
-              //   style: TextStyle(color: Colors.white, fontSize: 22),
-              // ),
-              // TypeWriter(
-              //   controller:
-              //       valueController, // valueController // streamController
-              //   builder: (context, value) {
-              //     return Text(
-              //       value.text,
-              //       style: TextStyle(color: Colors.white, fontSize: 22),
-              //       maxLines: 2,
-              //     );
-              //   },
-              // ),
-              // FlipCard(
-              //   rotateSide: RotateSide.bottom,
-              //   axis: FlipAxis.horizontal,
-              //   controller: flipcontroller,
-              //   frontWidget: Text(
-              //     'Developer',
-              //     style: TextStyle(color: Colors.white, fontSize: 22),
-              //   ),
-              //   backWidget: Text(
-              //     'Designer',
-              //     style: TextStyle(color: Colors.white, fontSize: 22),
-              //   ),
-              // ),
-              Spacer(),
-            ],
-          );
-        }),
-        SizedBox(height: 30),
-        LayoutBuilder(builder: (context, constraints) {
-          if (constraints.maxWidth < 1345) {
-            return Row(
-              children: [
-                Spacer(),
-                RichText(
-                    textAlign: TextAlign.center,
-                    text: TextSpan(children: <TextSpan>[
-                      TextSpan(
-                        text: "I'm ",
-                        style: TextStyle(
-                            color: Color.fromARGB(130, 224, 224, 224),
-                            fontSize: 17),
-                      ),
-                      TextSpan(
-                        text: "Kartik NHM,",
-                        style: TextStyle(
-                            color: const Color.fromARGB(255, 42, 157, 244),
-                            fontSize: 17),
-                      ),
-                      TextSpan(
-                        text: "\npassionate about developing Applications.",
-                        style: TextStyle(
-                            color: Color.fromARGB(130, 224, 224, 224),
-                            fontSize: 17),
-                      )
-                    ])),
-                Spacer(),
+                Row(children: [
+                  Spacer(),
+                  SizedBox(
+                    height: 100,
+                    width: 250,
+                    child: Center(child: codequantumflip(fontsize: 25)),
+                  ),
+                  Spacer()
+                ]),
               ],
             );
           } else {
-            return Row(
+            return Column(
               children: [
-                Spacer(),
-
-                RichText(
-                    textAlign: TextAlign.center,
-                    text: TextSpan(children: <TextSpan>[
-                      TextSpan(
-                        text: "Building Tomorrow's Technology, Today.\n",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontFamily: "Roboto_Mono",
-                            color: Color.fromARGB(130, 224, 224, 224),
-                            fontSize: 24),
-                      ),
-                      // TextSpan(
-                      //   text:
-                      //       "\nWe are driven by the power of code and defined by our commitment to groundbreaking and innovative solutions.",
-                      //   style: TextStyle(
-                      //       color: const Color.fromARGB(255, 42, 157, 244),
-                      //       fontFamily: "Roboto_Mono",
-                      //       fontSize: 20),
-                      // ),
-                    ])),
-                // RichText(
-                //     textAlign: TextAlign.justify,
-                //     text: TextSpan(children: <TextSpan>[
-                //       TextSpan(
-                //         text: "I'm ",
-                //         style: TextStyle(
-                //             color: Color.fromARGB(130, 224, 224, 224),
-                //             fontSize: 17),
-                //       ),
-                //       TextSpan(
-                //         text: "Kartik NHM",
-                //         style: TextStyle(
-                //             color: const Color.fromARGB(255, 42, 157, 244),
-                //             fontSize: 17),
-                //       ),
-                //       TextSpan(
-                //         text: " passionate about developing Applications.",
-                //         style: TextStyle(
-                //             color: Color.fromARGB(130, 224, 224, 224),
-                //             fontSize: 17),
-                //       )
-                //     ])),
-                Spacer(),
+                Row(
+                  children: [
+                    Spacer(),
+                    RichText(
+                        textAlign: TextAlign.center,
+                        text: TextSpan(children: <TextSpan>[
+                          TextSpan(
+                            text: "Building Tomorrow's Technology, Today.\n",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontFamily: "Roboto_Mono",
+                                color: Color.fromARGB(130, 224, 224, 224),
+                                fontSize: 24),
+                          ),
+                        ])),
+                    Spacer(),
+                  ],
+                ),
+                Row(children: [
+                  Spacer(),
+                  SizedBox(
+                    height: 100,
+                    width: 500,
+                    child: Center(child: codequantumflip(fontsize: 32)),
+                  ),
+                  Spacer()
+                ]),
               ],
             );
           }
         }),
         // SizedBox(height: 10),
-        Row(children: [
-          Spacer(),
-          SizedBox(width: 50),
-          codequantumflip(),
-          Spacer()
-        ]),
-        SizedBox(height: 70),
+
+        SizedBox(height: 50),
         Row(
           children: [
             Spacer(),
@@ -465,99 +362,37 @@ class _mainpgState extends State<mainpg> {
 }
 
 class codequantumflip extends StatefulWidget {
-  const codequantumflip({
-    super.key,
-  });
+  double fontsize;
+  codequantumflip({super.key, required this.fontsize});
 
   @override
   State<codequantumflip> createState() => _codequantumflipState();
 }
 
 class _codequantumflipState extends State<codequantumflip> {
-  void setTyping() {
-    setState(() {
-      isFrontTyping = !isFrontTyping;
-    });
-  }
-
-  Timer? _timer;
-  @override
-  void initState() {
-    super.initState();
-    _timer = Timer.periodic(Duration(seconds: 7), (Timer t) {
-      flipcontroller.flipcard();
-      setTyping();
-    });
-  }
-
-  @override
-  void dispose() {
-    _timer?.cancel();
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
-    return FlipCard(
-      rotateSide: RotateSide.bottom,
-      axis: FlipAxis.horizontal,
-      controller: flipcontroller,
-      /*  frontWidget: RichText(
-          textAlign: TextAlign.justify,
-          text: TextSpan(children: <TextSpan>[
-            TextSpan(
-              text: "@ ",
-              style: TextStyle(
-                  color: Color.fromARGB(255, 42, 157, 244), fontSize: 32),
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: <Widget>[
+        AnimatedTextKit(
+          repeatForever: true,
+          animatedTexts: [
+            RotateAnimatedText(
+              'At CodeQuantum...',
+              textStyle: TextStyle(
+                  color: Color.fromARGB(255, 42, 157, 244),
+                  fontSize: widget.fontsize,
+                  fontFamily: "Roboto_Mono"),
             ),
-            TextSpan(
-              text: "CodeQuantum...",
-              style: TextStyle(
-                  color: const Color.fromARGB(130, 224, 224, 224),
-                  fontSize: 32),
-            ),
-          ])),
-          */
-      frontWidget: TypeWriter(
-        enabled: isFrontTyping,
-        controller: frontvalueController, // valueController // streamController
-        builder: (context, value) {
-          return Text(
-            value.text,
-            style: TextStyle(
-                color: Color.fromARGB(255, 42, 157, 244), fontSize: 32),
-            maxLines: 2,
-          );
-        },
-      ),
-
-      // backWidget: RichText(
-      //     textAlign: TextAlign.justify,
-      //     text: TextSpan(children: <TextSpan>[
-      //       TextSpan(
-      //         text: "@ ",
-      //         style: TextStyle(
-      //             color: Color.fromARGB(255, 42, 157, 244), fontSize: 32),
-      //       ),
-      //       TextSpan(
-      //         text: "Here...",
-      //         style: TextStyle(
-      //             color: const Color.fromARGB(130, 224, 224, 224),
-      //             fontSize: 32),
-      //       ),
-      //     ])),
-      backWidget: TypeWriter(
-        enabled: !isFrontTyping,
-        controller: backvalueController, // valueController // streamController
-        builder: (context, value) {
-          return Text(
-            value.text,
-            style: TextStyle(
-                color: Color.fromARGB(255, 42, 157, 244), fontSize: 32),
-            maxLines: 2,
-          );
-        },
-      ),
+            RotateAnimatedText('At Here...',
+                textStyle: TextStyle(
+                    color: Color.fromARGB(255, 42, 157, 244),
+                    fontSize: widget.fontsize,
+                    fontFamily: "Roboto_Mono")),
+          ],
+        ),
+      ],
     );
   }
 }
